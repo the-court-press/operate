@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="description" content="OPERATE! — merge four number tiles with + − × ÷ to hit the target. Tactile solo puzzle practice." />
+  <meta name="theme-color" content="#2c4a3e" />
+  <title>OPERATE!</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%232c4a3e'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-size='28' fill='%23f4e9d0' font-family='system-ui'%3E24%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+  <div class="tabletop">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">◈</span>
+        <h1>OPERATE!</h1>
+      </div>
+      <div class="meta-row">
+        <label class="field">
+          <span class="field-label">Band</span>
+          <select id="bandSelect" aria-label="Difficulty band">
+            <option value="seed">Seed</option>
+            <option value="sprout" selected>Sprout</option>
+            <option value="explorer">Explorer</option>
+          </select>
+        </label>
+        <div class="stat" title="Solve time">
+          <span class="stat-label">Time</span>
+          <span id="timer" class="stat-value">0:00</span>
+        </div>
+        <div class="stat" title="Puzzles solved this session">
+          <span class="stat-label">Solved</span>
+          <span id="solvedCount" class="stat-value">0</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="hud" aria-label="Focus meter and practice duel">
+      <div class="focus-block">
+        <div class="focus-head">
+          <span>Focus</span>
+          <span id="focusPct">0%</span>
+        </div>
+        <div class="focus-track" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="focusMeter">
+          <div class="focus-fill" id="focusFill"></div>
+          <div class="focus-segments" aria-hidden="true"></div>
+        </div>
+        <p class="focus-hint" id="focusHint">Solve fast to charge. Idle drains.</p>
+      </div>
+      <div class="duel-block" aria-label="Duel practice (cosmetic)">
+        <div class="duel-label">Duel practice</div>
+        <div class="fighters">
+          <div class="fighter you">
+            <span class="fighter-name">You</span>
+            <div class="hp-track"><div class="hp-fill" id="youHp" style="width:100%"></div></div>
+          </div>
+          <div class="vs">vs</div>
+          <div class="fighter ghost">
+            <span class="fighter-name">Ghost</span>
+            <div class="hp-track"><div class="hp-fill ghost-hp" id="ghostHp" style="width:100%"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main class="stage">
+      <div class="target-card">
+        <span class="target-label">Target</span>
+        <span class="target-value" id="targetValue">24</span>
+        <span class="ops-allowed" id="opsAllowed" title="Allowed operations">+ − × ÷</span>
+      </div>
+
+      <div class="tiles" id="tileBoard" role="list" aria-label="Number tiles"></div>
+
+      <div class="ops" role="group" aria-label="Operations">
+        <button type="button" class="op-btn" data-op="+" aria-label="Add">+</button>
+        <button type="button" class="op-btn" data-op="-" aria-label="Subtract">−</button>
+        <button type="button" class="op-btn" data-op="*" aria-label="Multiply">×</button>
+        <button type="button" class="op-btn" data-op="/" aria-label="Divide">÷</button>
+      </div>
+
+      <div class="toolbar">
+        <button type="button" class="tool-btn" id="undoBtn" title="Undo last merge">Undo</button>
+        <button type="button" class="tool-btn" id="resetBtn" title="Reset this puzzle">Reset</button>
+        <button type="button" class="tool-btn primary" id="dealBtn" title="Deal a new puzzle">New puzzle</button>
+        <button type="button" class="tool-btn ghost-btn" id="soundBtn" title="Toggle sound" aria-pressed="true">Sound</button>
+      </div>
+
+      <p class="toast" id="toast" role="status" aria-live="polite"></p>
+    </main>
+
+    <aside class="teach" id="teachPanel" hidden>
+      <h2>Nice solve!</h2>
+      <p class="teach-path" id="yourPath"></p>
+      <div id="altWrap" hidden>
+        <p class="teach-label">Another path</p>
+        <p class="teach-path alt" id="altPath"></p>
+      </div>
+      <button type="button" class="tool-btn primary" id="nextAfterSolve">Next puzzle</button>
+    </aside>
+
+    <footer class="foot">
+      <p>Select two tiles, then an op — or tap an op first. Each number used once. Merge down to the target.</p>
+      <p class="credits">Original puzzle product · inspired by classic target-number games · no franchise IP</p>
+    </footer>
+  </div>
+
+  <script src="js/puzzles.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
