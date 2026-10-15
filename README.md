@@ -3,7 +3,7 @@
 **OPERATE!** is a tactile four-tile number-merge puzzle: combine two numbers with **+ − × ÷**, replace them with the result, and keep going until one tile equals the **target** (classic mode: **24**).
 
 Playable demo (GitHub Pages):  
-**https://julianlee314-hue.github.io/operate/**
+**https://the-court-press.github.io/operate/**
 
 ## How to play
 
